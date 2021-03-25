@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jacksonite</title>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		<link rel="stylesheet" href="index.css"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Potta+One&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<br/>
+		<h1>
+			<a href="/index.html">
+				Jacksonite
+			</a>
+		</h1>
+		<br/>
+		<div id="article_body">
+			
+		</div>
+		<script type="text/javascript">
+			var params = new URLSearchParams(window.location.search);
+			var file_path = params.get("file_path");
+			
+			var md = "# The Rules of Fight Club\n## The First Rule of Fight Club\n![Test Img](https://uproxx.com/wp-content/uploads/2019/04/deadwood-movie-trailer-1.jpg)";
+			var inner_body = document.getElementById("article_body");
+			inner_body.innerHTML = marked(md);
+			
+			if (file_path) {
+				var raw_file = new XMLHttpRequest();
+				raw_file.onreadystatechange = function() {
+					console.log(raw_file.responseText);
+				}
+				raw_file.open("GET", `${window.location.origin}/assets/${file_path}`, true);
+				raw_file.send();
+			}	
+		</script>
+	</body>
+</html>
